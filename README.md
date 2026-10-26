@@ -20,21 +20,93 @@ The system represents a railway station as a connected network of locations and 
 
 Key Features
 
-* Interactive Indoor Maps: Displays station entrances, platforms, waiting areas, ticket counters, restrooms, food stalls, lifts, ramps, and exits on a searchable map.
-* Smart Route Planning: Calculates suitable walking routes using a graph-based pathfinding algorithm and displays the route with clear directional instructions.
-* Accessibility-Based Navigation: Provides routes that avoid stairs when wheelchair-friendly mode is selected and use mapped lifts or ramps wherever available.
-* Voice-Assisted Directions: Converts route instructions into speech and provides an interface designed to work with screen readers and keyboard navigation.
-* Multilingual Interface: Supports navigation instructions in English, Tamil, Hindi, and additional languages as translations become available.
-* QR-Based Location Detection: Uses QR codes installed at selected station locations to establish a known starting point for navigation.
-* Facility Status Management: Allows authorized station personnel to update facility details and mark mapped pathways as unavailable.
-* Mobile and Kiosk Access: Offers a responsive web application for mobile users and a simplified interface suitable for touchscreen kiosks.
-* Offline Map Access: Stores essential map information on the user's device so that previously downloaded station maps can remain available during weak connectivity.
-* Future Railway Information Integration: Provides an architectural path for connecting verified train and platform information through authorized railway data services.
+* Interactive Maps: Shows platforms, entrances, exits and other station facilities.
+* Route Planning: Finds a suitable route from the starting point to the destination.
+* Accessibility Support: Helps users find routes using lifts and ramps where mapped and available.
+* Voice Guidance: Reads directions aloud for passengers who need audio assistance.
+* Multiple Languages: Provides directions in English, Tamil, Hindi and other supported languages.
+* QR Code Navigation: Uses QR codes at selected locations to identify the passenger's starting point.
+* Facility Updates: Allows authorized staff to update facility details and mark closed pathways.
+* Mobile and Kiosk Access: Works through a mobile website or station touchscreen kiosk.
+* Offline Maps: Allows users to view previously downloaded maps without an internet connection.
+* Future Integration: Can be connected to authorized railway information services in the future.
 
 
 ## Proposed Solution / Architecture Diagram
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8440cc9a-ea1f-4b56-b779-a8dd6c048052" />
+```
+          TRACKWAY: RAILWAY STATION WAYFINDING SYSTEM
+                              |
+               +--------------+--------------+
+               |                             |
+        PASSENGER / USER              STATION ADMIN
+               |                             |
+               v                             v
+      +-------------------+        +-------------------+
+      | Mobile Web App   |        | Admin Dashboard   |
+      | Touchscreen Kiosk|        | Facility Updates   |
+      +-------------------+        +-------------------+
+               |
+               v
+      +--------------------------------------+
+      |       PRESENTATION LAYER             |
+      | Interactive Map | Search | QR Scanner|
+      | Language Selection | Accessibility   |
+      +--------------------------------------+
+                         |
+                         v
+      +--------------------------------------+
+      |       APPLICATION LAYER              |
+      |           FastAPI Backend            |
+      +--------------------------------------+
+                          |
+       +-------+----------+----------------+
+       |                  |                |
+       v                  v                v
++---------------+ +----------------+ +----------------+
+| Facility      | | QR Location    | | User Preference|
+| Search        | | Detection      | | Management     |
++---------------+ +----------------+ +----------------+
+       |                  |                |
+       +------------------+----------------+
+                          |
+                          v
+              +--------------------------+
+              |     ROUTING ENGINE       |
+              |   Dijkstra's Algorithm   |
+              +--------------------------+
+                          |
+                          v
+              +--------------------------+
+              | Station Pathway Graph    |
+              | Accessible Route Rules   |
+              +--------------------------+
+                          |
+                          v
+              +--------------------------+
+              |      DATA LAYER          |
+              | Station Maps & Facilities|
+              | Pathways & QR Locations  |
+              | Facility Status          |
+              +--------------------------+
+                          |
+                          v
+              +--------------------------+
+              | Route & Directions       |
+              | Voice Guidance           |
+              | Offline Map Cache        |
+              +--------------------------+
+                          |
+                          v
+              +--------------------------+
+              | Highlighted Route and    |
+              | Step-by-Step Directions  |
+              +--------------------------+
+                          |
+                          v
+                      PASSENGER
+
+```
 
 
 ## Use Cases
