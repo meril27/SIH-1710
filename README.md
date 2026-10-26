@@ -123,30 +123,6 @@ Key Features
 | 8 | Passenger with limited connectivity | Opens a previously downloaded station map | Views cached map information when offline support is available |
 | 9 | Railway operations team | Reviews facility records | Maintains station information through authorized administrative controls |
 
-## Architecture Explanation
-
-1. **Passenger Interface:** Allows users to search for destinations, select accessibility preferences, view maps, and follow navigation instructions.
-2. **Backend API:** Processes requests, retrieves facility information, and coordinates route calculations.
-3. **Station Map Database:** Stores mapped locations, facility details, pathway connections, and accessibility attributes.
-4. **Routing Engine:** Calculates a suitable path between the passenger's starting point and destination using Dijkstra's algorithm.
-5. **QR Location Module:** Identifies mapped checkpoints through scanned QR codes and supplies the corresponding location to the routing engine.
-6. **Voice Guidance Module:** Converts navigation instructions into spoken directions using supported browser or device capabilities.
-7. **Management Dashboard:** Enables authorized personnel to maintain station information and update unavailable facilities or pathways.
-8. **Offline Support:** Uses locally cached map data to provide access to previously downloaded station information when connectivity is limited.
-
-## Working Process
-
-1. The passenger opens TrackWay using a mobile browser or station kiosk.
-2. The passenger selects the station and identifies their current location.
-3. The passenger searches for a platform or facility.
-4. The routing engine calculates a path based on available station connections and the selected accessibility preferences.
-5. The application displays the route and provides step-by-step directions.
-6. Voice guidance can read the directions aloud when enabled.
-7. If a pathway is marked unavailable in the station data, the system attempts to calculate an alternative route.
-8. Authorized staff maintain facility and pathway information through the management dashboard.
-<br>
-<img width="1441" height="1092" alt="image" src="https://github.com/user-attachments/assets/2c5cb3bd-9fcf-4678-90fd-d6bd98629e57" />
-
 
 ## Technology Stack
 
