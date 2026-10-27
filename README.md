@@ -111,84 +111,69 @@ Key Features
 
 ## Use Cases
 
-| No. | Actor | Scenario | Expected Outcome |
-|---|---|---|---|
-| 1 | First-time passenger | Needs to reach a particular platform | Receives a highlighted route and directional instructions |
-| 2 | Wheelchair user | Needs to reach a platform without using stairs | Receives a route using mapped accessible pathways or a notice when none is available |
-| 3 | Visually impaired passenger | Needs to locate a restroom or exit | Receives spoken directions through supported accessibility features |
-| 4 | General passenger | Searches for a ticket counter or waiting hall | Finds the facility and receives directions |
-| 5 | Passenger unfamiliar with local languages | Selects a preferred interface language | Receives translated navigation instructions where supported |
-| 6 | Kiosk visitor | Needs assistance without using a personal smartphone | Uses a touchscreen interface to view directions |
-| 7 | Station administrator | A passage becomes unavailable | Updates the pathway status so subsequent route calculations can avoid it |
-| 8 | Passenger with limited connectivity | Opens a previously downloaded station map | Views cached map information when offline support is available |
-| 9 | Railway operations team | Reviews facility records | Maintains station information through authorized administrative controls |
+| No. | User                        | Action                      | Result                             |
+| --- | --------------------------- | --------------------------- | ---------------------------------- |
+| 1   | Passenger                   | Searches for a platform     | Gets directions                    |
+| 2   | Wheelchair user             | Looks for a step-free route | Finds an accessible path           |
+| 3   | Visually impaired passenger | Enables voice guidance      | Hears directions                   |
+| 4   | Passenger                   | Searches for a facility     | Finds its location                 |
+| 5   | Passenger                   | Selects a language          | Gets directions in that language   |
+| 6   | Kiosk visitor               | Uses a station kiosk        | Gets directions without a phone    |
+| 7   | Station administrator       | Updates facility details    | Information stays updated          |
+| 8   | Passenger                   | Opens a downloaded map      | Views the map offline              |
+| 9   | Railway operations team     | Reviews station records     | Keeps station information accurate |
+
+<br>
+<img width="1536" height="825" alt="TrackWay Railway Wayfinding Use Case Diagram" src="https://github.com/user-attachments/assets/67aeb5aa-98d1-4def-b668-6233626bae38" />
 
 
 ## Technology Stack
 
-| Layer | Proposed Technology | Purpose |
-|---|---|---|
-| Frontend | HTML5, CSS3, JavaScript | Develop the passenger interface |
-| Interactive maps | SVG-based indoor maps | Display mapped station locations and highlighted routes |
-| Progressive Web App | Web App Manifest, Service Worker, Cache API | Support installation and offline caching |
-| Backend | Python 3, FastAPI | Provide application APIs |
-| API server | Uvicorn | Run the FastAPI application |
-| Data validation | Pydantic | Validate API request and response data |
-| Routing algorithm | Dijkstra's algorithm | Calculate routes on a weighted station graph |
-| Prototype data storage | JSON | Store sample station layouts and pathway connections |
-| Production database | PostgreSQL with PostGIS | Store structured facility and spatial information |
-| Real-time communication | WebSockets or Server-Sent Events | Support future live updates |
-| Voice guidance | Web Speech API | Read navigation instructions aloud where supported |
-| Accessibility | ARIA, semantic HTML, keyboard controls | Improve accessibility for assistive technologies |
-| QR-code support | Browser camera API and QR-scanning library | Identify mapped station checkpoints |
-| Testing | pytest and HTTPX | Test backend functionality and APIs |
-| Version control | Git and GitHub | Manage source code and collaboration |
-| Deployment | Docker and Docker Compose | Package and run application services |
+| Layer          | Technology             | Purpose                            |
+| -------------- | ---------------------- | ---------------------------------- |
+| Frontend       | HTML, CSS, JavaScript  | User interface                     |
+| Maps           | SVG                    | Display station maps               |
+| Backend        | Python, FastAPI        | Process requests                   |
+| Server         | Uvicorn                | Run the backend                    |
+| Routing        | Dijkstra's Algorithm   | Find routes                        |
+| Data Storage   | JSON                   | Store station data                 |
+| Database       | PostgreSQL             | Store station information          |
+| Voice Guidance | Web Speech API         | Speak directions                   |
+| QR Scanning    | Camera API, QR library | Identify locations                 |
+| Testing        | pytest, HTTPX          | Test the application               |
+| Deployment     | Docker                 | Run the application in a container |
+
+
 
 ## Dependencies
 
 ### Software Dependencies
 
-- **Python 3:** Required for backend development.
-- **FastAPI:** Used to implement REST API endpoints.
-- **Uvicorn:** Runs the backend application server.
-- **Pydantic:** Validates incoming data and application models.
-- **pytest:** Supports automated testing of application functionality.
-- **HTTPX:** Enables API testing.
-- **HTML, CSS, and JavaScript:** Build the web interface.
-- **SVG map assets:** Represent the station layout and navigation paths.
-- **Browser APIs:** Provide camera access, caching, network requests, and speech functionality where supported.
-- **QR-scanning library:** Decodes location identifiers from station QR codes.
+* Python and FastAPI for the backend.
+* HTML, CSS, and JavaScript for the interface.
+* Uvicorn to run the server.
+* A QR-scanning library to scan QR codes.
+* SVG maps to display station layouts.
+* pytest and HTTPX for testing.
 
 ### Data Dependencies
 
-- Digital or manually prepared station floor plans.
-- Location records for platforms, entrances, exits, and facilities.
-- Pathway connections between mapped locations.
-- Accessibility attributes for lifts, ramps, stairs, and corridors.
-- QR-code identifiers associated with known locations.
-- Verified facility availability and pathway closure information.
+* Station maps and facility locations.
+* Connections between pathways.
+* Information about lifts, ramps, and stairs.
+* QR codes linked to station locations.
+* Updated facility and pathway status.
 
 ### Hardware Dependencies
 
-- A computer for development and testing.
-- A smartphone or camera-enabled device for QR scanning.
-- A web browser for accessing the application.
-- Printed QR codes for demonstration checkpoints.
-- An optional touchscreen display and speaker for kiosk demonstrations.
+* Computer for development.
+* Smartphone or camera-enabled device.
+* Web browser.
+* Printed QR codes for demonstration.
+* Optional touchscreen kiosk and speaker.
 
-### External Integration Dependencies
+### External Dependencies
 
-- Access to verified railway station maps and facility information.
-- Authorized train or platform information services if railway integration is implemented.
-- Internet connectivity for live backend requests and updates.
-- Suitable hosting infrastructure for a deployed version.
-- Optional indoor positioning hardware if continuous positioning is introduced in a future release.
-
-### Operational Dependencies
-
-- Authorized personnel to maintain station maps and facility records.
-- Periodic verification of route and accessibility information.
-- A process for reporting and confirming temporary pathway closures.
-- Translation review to ensure that navigation instructions are clear and accurate.
-
+* Verified railway station maps.
+* Internet connection for live updates.
+* Authorized railway information services for future integration.
